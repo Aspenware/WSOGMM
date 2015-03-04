@@ -84,20 +84,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+try:
+    if os.environ['ENVIRONMENT'] is 'Production':
+        # Honor the 'X-Forwarded-Proto' header for request.is_secure()
+        SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-if os.environ['ENVIRONMENT'] is 'Production':
-    # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+        # Parse database configuration from $DATABASE_URL
+        DATABASES['default'] = dj_database_url.config()
 
-    # Parse database configuration from $DATABASE_URL
-    DATABASES['default'] = dj_database_url.config()
+        # Static asset configuration
+        STATIC_ROOT = 'staticfiles'
+        STATICFILES_DIRS = (
+            os.path.join(BASE_DIR, 'static'),
+        )
 
-    # Static asset configuration
-    STATIC_ROOT = 'staticfiles'
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
-    )
-
-    # Allow all host headers
-    ALLOWED_HOSTS.append('*')
-
+        # Allow all host headers
+        ALLOWED_HOSTS.append('*')
+except KeyError:
+    pass

@@ -61,3 +61,6 @@ target/
 
 # Static files directory
 staticfiles
+
+# Virtual Environment
+venv

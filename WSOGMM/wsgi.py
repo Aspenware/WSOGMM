@@ -14,5 +14,8 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "WSOGMM.settings")
 application = get_wsgi_application()
 
-if os.environ['ENVIRONMENT'] is 'Production':
-    application = Cling(application)
+try:
+    if os.environ['ENVIRONMENT'] is 'Production':
+        application = Cling(application)
+except KeyError:
+    pass
