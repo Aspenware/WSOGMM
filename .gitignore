@@ -53,5 +53,11 @@ docs/_build/
 # PyBuilder
 target/
 
+# Local SQLite3 Database Files
 *.sqlite3
+
+# Pycharm configuration directory
 .idea
+
+# Static files directory
+staticfiles
