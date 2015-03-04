@@ -1,0 +1,1 @@
+web: gunicorn WSOGMM.wsgi --log-file -
