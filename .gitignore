@@ -7,3 +7,4 @@ lib/
 *.rdb
 .idea/
 nbproject/
+db.sqlite3
