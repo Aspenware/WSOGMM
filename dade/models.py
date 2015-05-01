@@ -1,5 +1,6 @@
 from django.db import models
 
+#I'm pretty sure django has a seperate account manager so Account might be useless.
 class Account(models.Model):
 	# id is done automagically
 	username = models.CharField(max_length=128)
@@ -9,13 +10,13 @@ class Account(models.Model):
 	priviledge = models.IntegerField(default=1)
 	is_confirmed = models.BooleanField(default=False)
 	confirmation_code = models.CharField(max_length=128)
-	school = models.ForeignKey("School")
+	accountschool = models.ForeignKey("School")
 	def __str__(self):
 		return self.username
 
 class Group(models.Model):
 	name = models.CharField(max_length=128)
-	school = models.ForeignKey("School")
+	groupschool = models.ForeignKey("School")
 	accounts = models.ManyToManyField(Account, verbose_name="Accounts")
 
 class School(models.Model):
