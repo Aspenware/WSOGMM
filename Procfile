@@ -1,1 +1,1 @@
-web: gunicorn --workers=4 WSOGMM.wsgi
+web: gunicorn --workers=4 --log-file=- WSOGMM.wsgi
