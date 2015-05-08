@@ -1,12 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-#I'm pretty sure django has a seperate account manager so Account might be useless.
 class Account(models.Model):
-
-# id is done automagically
-	username = models.CharField(max_length=128)
-	password = models.CharField(max_length=256)
-	email = models.CharField(max_length=256)
+	user = models.OneToOneField(User)
 	realname = models.CharField(max_length=256)
 	priviledge = models.IntegerField(default=1)
 	is_confirmed = models.BooleanField(default=False)
