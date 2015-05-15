@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 # Create your views here.
 def login(request):
     if request.method == 'GET':
+      if request.user.is_authenticated():
+        return render(request, 'base.html')
+      else:
         return render(request, 'base_login.html')
     else:
         email = request.POST.get('email', '')
