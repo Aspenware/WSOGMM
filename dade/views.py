@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.contrib import auth
+from django.contrib.auth.models import User
 
 # Create your views here.
 def login(request):
@@ -11,7 +12,9 @@ def login(request):
         email = request.POST.get('email', '')
         password = request.POST.get('password', '')
 
-        user = auth.authenticate(username=email, password=password)
+        userR = User.objects.get(email=email)
+
+        user = auth.authenticate(user=userR.username, password=password)
 
         if user is not None and user.is_active:
             return HttpResponseRedirect("/site/base_loggedin")
