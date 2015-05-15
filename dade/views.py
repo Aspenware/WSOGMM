@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.contrib import auth
+from django.views.generic import RedirectView
 
 # Create your views here.
 def login(request):
@@ -14,8 +15,16 @@ def login(request):
         user = auth.authenticate(username=email, password=password)
 
         if user is not None and user.is_active:
-            return HttpResponseRedirect("/site/base_loggedin")
+            return RedirectView.as_view(url="/site/login")(request)
         return render(request, 'base_login.html')
+
+
+def logout(request):
+    if request.user is not None and request.user.is_authenticated():
+        auth.logout(request)
+
+    return RedirectView.as_view(url='/site/login')(request)
+
 
 
 def register(request):
