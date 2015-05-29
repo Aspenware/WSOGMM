@@ -24,5 +24,7 @@ class Assignment(models.Model):
 	name = models.CharField(max_length=128)
 	school = models.ForeignKey(School)
 	group = models.ForeignKey(Group)
+class Event(models.Model):
+	name = models.CharField(max_length=128)
 class Notification(models.Model):
 	notifytype = models.CharField(max, max_length=128)
