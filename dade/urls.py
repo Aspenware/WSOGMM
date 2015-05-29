@@ -6,5 +6,6 @@ urlpatterns = patterns('',
 	url(r'^register/', views.register, name='register'),
 	url(r'^error/', views.error, name='error'),
 	url(r'^event/', views.event, name='event'),
-	url(r'', views.index, name='login')
+	url(r'^logout/', views.logout, name='logout'),
+	#url(r'', views.index, name='login')
 )

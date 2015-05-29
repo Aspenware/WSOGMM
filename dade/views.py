@@ -31,7 +31,7 @@ def logout(request):
 
 def register(request):
     return render(request, 'base_register.html')
-
+    
 def error(request):
     return render(request, 'base_error.html')
 

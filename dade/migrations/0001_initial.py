@@ -2,8 +2,8 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import __builtin__
 from django.conf import settings
-import builtins
 
 
 class Migration(migrations.Migration):
@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Account',
             fields=[
-                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('realname', models.CharField(max_length=256)),
                 ('priviledge', models.IntegerField(default=1)),
                 ('is_confirmed', models.BooleanField(default=False)),
@@ -29,7 +29,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Assignment',
             fields=[
-                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=128)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Event',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=128)),
             ],
             options={
@@ -39,9 +49,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Group',
             fields=[
-                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=128)),
-                ('accounts', models.ManyToManyField(to='dade.Account', verbose_name='Accounts')),
+                ('accounts', models.ManyToManyField(to='dade.Account', verbose_name=b'Accounts')),
             ],
             options={
             },
@@ -50,8 +60,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Notification',
             fields=[
-                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
-                ('notifytype', models.CharField(max_length=128, verbose_name=builtins.max)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('notifytype', models.CharField(max_length=128, verbose_name=__builtin__.max)),
             ],
             options={
             },
@@ -60,10 +70,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='School',
             fields=[
-                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=128)),
-                ('groups', models.ManyToManyField(to='dade.Group', verbose_name='Groups')),
-                ('schoolaccounts', models.ManyToManyField(to='dade.Account', verbose_name='Accounts')),
+                ('groups', models.ManyToManyField(to='dade.Group', verbose_name=b'Groups')),
+                ('schoolaccounts', models.ManyToManyField(to='dade.Account', verbose_name=b'Accounts')),
             ],
             options={
             },
